@@ -30,4 +30,12 @@ itemize([H|T], [[H]|T0]) :- itemize(T, T0).
 
 
 
-%As for part two, the minimal conflict set is [ [d], [e, g], [e, h] ].
+%As for part two, the minimal conflict set is [ [d], [e, g], [e, h] ]. The reasoning is as follows
+%So there are two false atoms, namely [false, a] and [false, b, c]. So, for a conflict for [false, a], 
+%[a, d] must hold, and so [d] forms a conflict. That exhausts possibilities for [false, a]. Now, for
+%[false, b, c] to be a conflict, [b] and [c] must be true. Thus [e] must be true, as [b, e]. Further,
+%[[d], [f]] must be true as [c, d, f], as well as [c, g] and [c, h]. This gives a set of conflicts
+%[ [d], [e, g], [e, d, f], [e, g] and [e, h]. But [d] is shared by [d] and [e, d, f], so [e, d, f] is
+%reduced to [e, f], which is not a conflict. Thus, the minimal conflict set is:
+
+%[d, [e, g], [e. h]]
